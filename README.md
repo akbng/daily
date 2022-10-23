@@ -20,13 +20,13 @@
     <img src="https://img.shields.io/twitter/follow/dailydotdev?color=26A0ED&label=Follow&logo=twitter&logoColor=white&style=flat" alt="Twitter">
   </a>
 
-  <a href="https://storybook.daily.dev">
-    <img src="https://img.shields.io/badge/%20-storybook-502ab0?logo=storybook&logoColor=white" alt="Storybook">
-  </a>
-
 </p>
 
-
+<p align="center">
+  <a href="https://gitpod.io/#https://github.com/dailydotdev/apps/">
+    <img src="https://gitpod.io/button/open-in-gitpod.svg" alt="Open in Gitpod">
+  </a>
+</p>
 
 
 ## 🗞 daily.dev
@@ -49,7 +49,7 @@ At daily.dev we care about:
 
 ## 📌 Get daily.dev
 
-daily.dev is currently available for Google Chrome, Microsoft Edge, and Firefox. There's also a progressive web app (PWA) for mobile devices. Get it now on:
+daily.dev is currently available for Google Chrome, Microsoft Edge, and Mozilla Firefox. There's also a progressive web app (PWA) for mobile devices. Get it now on:
 
 <p align="center">
     <a href="https://r.daily.dev/chrome">
@@ -132,14 +132,16 @@ Let's setup daily.dev locally. First you need to setup the services required to 
 
 ## ⚙️ Setting Up Daily Services
 
+You can go the easy way by using [Gitpod](https://gitpod.io/#https://github.com/dailydotdev/apps/) or follow the instructions below.
+
 ### → STEP #0
 
 * Go through the [projects description](#-daily-projects) and [the architecture](#-architecture) to familiarize yourself with the system and its components.
 * Make sure docker-compose is installed on your machine. Take a look at the [official guide](https://docs.docker.com/compose/install/) for installation. After installation, run the following command in your terminal for a double check.
 
 ```sh
-docker-compose -v
-# docker-compose version 1.29.2, build 5becea4c     // Expected result
+docker compose version
+# Docker Compose version v2.10.0 // Expected result
 ```
 
 ### → STEP #1
@@ -155,7 +157,7 @@ The first step is to **pull and run the docker images**, thanks to docker-compos
 Navigate to the cloned repository and make sure Docker is running on your machine. After that run the following command to run all daily services:
 
 ```sh
-docker-compose pull && docker-compose up
+docker compose pull && docker compose up
 ```
 
 The command will take a while depending upon your internet speed.
@@ -165,13 +167,13 @@ The command will take a while depending upon your internet speed.
 Now we need to apply the migrations on our databases so they will have the latest schema:
 
 ```sh
-docker exec apps_daily-api_1 node ./node_modules/typeorm/cli.js migration:run
+docker exec apps-daily-api-1 node ./node_modules/typeorm/cli.js migration:run
 
 # ... // Expected result
 # Migration PostToc1623847855158 has been executed successfully.
 # query: COMMIT
 
-docker exec apps_daily-gateway_1 yarn run db:migrate:latest
+docker exec apps-daily-gateway-1 yarn run db:migrate:latest
 
 # Using environment: development   // Expected result
 # Batch 1 run: 23 migrations
@@ -183,7 +185,7 @@ docker exec apps_daily-gateway_1 yarn run db:migrate:latest
 The last step is to populate your database using the seed data. All you need to do is, run the following command in your terminal:
 
 ```sh
-docker exec apps_daily-api_1 node bin/import.js
+docker exec apps-daily-api-1 node bin/import.js
 
 # importing Source              // Expected result
 # importing Post
@@ -255,15 +257,6 @@ You are more than welcome. Before contributing, kindly check our [guidelines](ht
 ## 🤔 FAQs
 
 We have compiled a list of FAQs. You can find it [here](https://daily.dev/support).
-
-## 🎩 Core Team
-
-Meet the core team of daily.dev:
-* [@idoshamun](https://twitter.com/idoshamun)
-* [@nimrodkramer](https://twitter.com/NimrodKramer)
-* [@tsahimatsliah](https://twitter.com/TsahiMatsliah)
-
-Feel free to reach out to us and say hi 👋.
 
 
 ## 💬 What Do You Think of daily.dev?
